@@ -6,5 +6,6 @@ public class ToDo
     {
         Launcher launcher = new Launcher();
         launcher.launch();
+        System.out.println("");
     }
 }
