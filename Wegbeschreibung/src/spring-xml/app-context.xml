@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="mainFrame" class="ui.MainFrame" init-method="init">
+      <property name="title">
+        <value>Wegbeschreibung</value>
+      </property>
+      <property name="size">
+        <ref bean="dimension"/>
+      </property>
+      <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+      </property>
+      <property name="resizable">
+        <value>false</value>
+      </property>
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="defaultCloseOperation">
+        <value>3</value>
+      </property>
+      <property name="mainPanel">
+        <ref bean="mainPanel"/>
+      </property>
+  </bean>
+  
+  <bean id="dimension" class="java.awt.Dimension">
+      <constructor-arg value="1200"/>
+      <constructor-arg value="800"/>
+  </bean>
+  
+  <bean id="mainPanel" class="ui.MainPanel">
+    <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="layout">
+        <ref bean="gridBagLayout"/>
+     </property>
+  </bean>
+  
+  <bean id="roomComboboxLeft" class="ui.RoomCombobox">
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="floor">
+        <ref bean="floor"/>
+      </property>
+  </bean>
+  
+  <bean id="roomComboboxRight" class="ui.RoomCombobox">
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="floor">
+        <ref bean="floor"/>
+      </property>
+  </bean>
+  
+  <bean id="routeToolBar" class="ui.RouteToolBar">
+      <property name="rightRoom">
+        <ref bean="roomComboboxRight"/>
+      </property>
+      <property name="leftRoom">
+        <ref bean="roomComboboxLeft"/>
+      </property>
+      <property name="startRoute">
+        <ref bean="startRouteButton"/>
+      </property>
+  </bean>
+  
+  <bean id="startRouteButton" class="ui.StartRouteButton">
+  </bean>
+  
+   <bean id="gridBagLayout" class="java.awt.GridBagLayout">
+  </bean>
+  
+  <bean id="floor" class="building.Floor">
+  </bean>
+  
+</beans>
