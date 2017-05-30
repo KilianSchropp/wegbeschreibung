@@ -7,22 +7,20 @@ import javax.swing.JToolBar;
 public class RouteToolBar extends JToolBar
 {
     private static final long serialVersionUID = 1L;
-    private JComboBox<String> rightRoom;
-    private JComboBox<String> leftRoom;
+    private JComboBox<String> roomComboboxRight;
+    private JComboBox<String> roomComboboxLeft;
     private JButton startRoute;
     
-    public void setRightRoom(JComboBox<String> rightRoom)
+    public void init()
     {
-        this.rightRoom = rightRoom;
+        add(roomComboboxLeft);
+        add(startRoute);
+        add(roomComboboxRight);
     }
     
-    public void setLeftRoom(JComboBox<String> rightRoom)
-    {
-        this.rightRoom = rightRoom;
-    }
+    public void setRoomComboboxRight(JComboBox<String> roomComboboxRight){this.roomComboboxRight = roomComboboxRight;}
     
-    public void setStartRoute(JButton startRoute)
-    {
-        this.startRoute = startRoute;
-    }
+    public void setRoomComboboxLeft(JComboBox<String> roomComboboxLeft){this.roomComboboxLeft = roomComboboxLeft;}
+    
+    public void setStartRoute(JButton startRoute){this.startRoute = startRoute;}
 }

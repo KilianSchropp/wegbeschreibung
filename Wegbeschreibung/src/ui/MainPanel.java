@@ -1,23 +1,21 @@
 package ui;
 
-import java.awt.GridBagConstraints;
+import java.awt.BorderLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 public class MainPanel extends JPanel
 {
     private static final long serialVersionUID = 1L;
-    
-    public MainPanel()
+    private JToolBar routeToolBar;
+    public void init()
     {
-        GridBagConstraints c = new GridBagConstraints();
-        
-        JButton button = new JButton("Button 1");
-        c.weightx = 0.5;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        add(button, c);
+        add(routeToolBar, BorderLayout.PAGE_START);
+    }
+    
+    public void setRouteToolBar(JToolBar routeToolBar)
+    {
+        this.routeToolBar = routeToolBar;
     }
 }

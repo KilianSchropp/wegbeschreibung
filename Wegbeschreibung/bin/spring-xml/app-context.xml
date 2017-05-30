@@ -34,7 +34,7 @@
       <constructor-arg value="800"/>
   </bean>
   
-  <bean id="mainPanel" class="ui.MainPanel">
+  <bean id="mainPanel" class="ui.MainPanel" init-method="init">
     <property name="background">
         <bean class="java.awt.Color" >
             <constructor-arg type="int" value="255" />
@@ -42,12 +42,15 @@
             <constructor-arg type="int" value="255" />
         </bean>
      </property>
+     <property name="routeToolBar">
+        <ref bean="routeToolBar"/>
+     </property>
      <property name="layout">
-        <ref bean="gridBagLayout"/>
+        <ref bean="layout"/>
      </property>
   </bean>
   
-  <bean id="roomComboboxLeft" class="ui.RoomCombobox">
+  <bean id="roomComboboxLeft" class="ui.RoomCombobox"  init-method="init">
       <property name="visible">
         <value>true</value>
       </property>
@@ -56,7 +59,7 @@
       </property>
   </bean>
   
-  <bean id="roomComboboxRight" class="ui.RoomCombobox">
+  <bean id="roomComboboxRight" class="ui.RoomCombobox" init-method="init">
       <property name="visible">
         <value>true</value>
       </property>
@@ -65,11 +68,11 @@
       </property>
   </bean>
   
-  <bean id="routeToolBar" class="ui.RouteToolBar">
-      <property name="rightRoom">
+  <bean id="routeToolBar" class="ui.RouteToolBar" init-method="init">
+      <property name="roomComboboxRight">
         <ref bean="roomComboboxRight"/>
       </property>
-      <property name="leftRoom">
+      <property name="roomComboboxLeft">
         <ref bean="roomComboboxLeft"/>
       </property>
       <property name="startRoute">
@@ -78,9 +81,10 @@
   </bean>
   
   <bean id="startRouteButton" class="ui.StartRouteButton">
+    <constructor-arg type="java.lang.String" value="Start route"/>
   </bean>
   
-   <bean id="gridBagLayout" class="java.awt.GridBagLayout">
+   <bean id="layout" class="java.awt.BorderLayout">
   </bean>
   
   <bean id="floor" class="building.Floor">
