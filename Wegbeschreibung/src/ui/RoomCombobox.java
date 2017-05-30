@@ -11,6 +11,11 @@ public class RoomCombobox extends JComboBox<String>
     private Floor floor;
     private static final long serialVersionUID = 1L;
     
+    public void init()
+    {
+        addFloor();
+    }
+    
     public void setFloor(Floor floor)
     {
         this.floor = floor;

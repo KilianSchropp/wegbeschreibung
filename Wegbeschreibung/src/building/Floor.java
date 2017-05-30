@@ -9,7 +9,7 @@ public class Floor
     
     public List<String> getRoomList()
     {
-        if(rooms.isEmpty())
+        if(rooms==null || rooms.isEmpty())
         {
             rooms = new ArrayList<String>();
             rooms.add("test");  
