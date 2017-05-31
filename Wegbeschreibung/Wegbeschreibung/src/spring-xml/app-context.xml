@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="mainFrame" class="ui.MainFrame" init-method="init">
+      <property name="title">
+        <value>Wegbeschreibung</value>
+      </property>
+      <property name="size">
+        <ref bean="dimension"/>
+      </property>
+      <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+      </property>
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="defaultCloseOperation">
+        <value>3</value>
+      </property>
+      <property name="mainPanel">
+        <ref bean="mainPanel"/>
+      </property>
+  </bean>
+  
+  <bean id="dimension" class="java.awt.Dimension">
+      <constructor-arg value="1200"/>
+      <constructor-arg value="800"/>
+  </bean>
+  
+  <bean id="mainPanel" class="ui.MainPanel" init-method="init">
+    <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="routeToolBar">
+        <ref bean="routeToolBar"/>
+     </property>
+     <property name="layout">
+        <ref bean="layout"/>
+     </property>
+     <property name="picturePanel">
+        <ref bean="picturePanel"/>
+     </property>
+  </bean>
+  
+  <bean id="roomComboboxLeft" class="ui.RoomCombobox"  init-method="init">
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="building">
+        <ref bean="building"/>
+      </property>
+  </bean>
+  
+  <bean id="roomComboboxRight" class="ui.RoomCombobox" init-method="init">
+      <property name="visible">
+        <value>true</value>
+      </property>
+      <property name="building">
+        <ref bean="building"/>
+      </property>
+  </bean>
+  
+  <bean id="routeToolBar" class="ui.RouteToolBar" init-method="init">
+      <property name="roomComboboxRight">
+        <ref bean="roomComboboxRight"/>
+      </property>
+      <property name="roomComboboxLeft">
+        <ref bean="roomComboboxLeft"/>
+      </property>
+      <property name="startRoute">
+        <ref bean="startRouteButton"/>
+      </property>
+  </bean>
+  
+  <bean id="startRouteButton" class="ui.StartRouteButton">
+    <constructor-arg type="java.lang.String" value="Start route"/>
+  </bean>
+  
+   <bean id="layout" class="java.awt.BorderLayout">
+  </bean>
+  
+  <bean id="building" class="building.Building">
+  </bean>
+  
+  <bean id="picturePanel" class="ui.PicturePanel">
+     <property name="building">
+        <ref bean="building"/>
+     </property>
+  </bean>
+  
+</beans>
