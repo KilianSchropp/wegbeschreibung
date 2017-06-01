@@ -1,10 +1,14 @@
 package launch;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Launcher
 {
+    static final Log LOG = LogFactory.getLog(Launcher.class);
+
     public static void main(String[] args)
     {
         Launcher launcher = new Launcher();
