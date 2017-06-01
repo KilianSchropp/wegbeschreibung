@@ -4,30 +4,31 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 
-import building.Floor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import building.Building;
 
 public class RoomCombobox extends JComboBox<String>
 {
-    private Floor floor;
     private static final long serialVersionUID = 1L;
+    static final Log LOG = LogFactory.getLog(RoomCombobox.class);
+    private Building building;
     
-    public void init()
+    public void setBuilding(Building building)
     {
-        addFloor();
+        this.building = building;
     }
-    
-    public void setFloor(Floor floor)
-    {
-        this.floor = floor;
-    }
+
+    public void init(){addFloor();}
     
     public void addFloor()
     {
-        List<String> rooms = floor.getRoomList();
+        List<String> rooms = building.getAllRooms();
         for(String room : rooms)
         {
             addItem(room);
         }
     }
-
+ 
 }

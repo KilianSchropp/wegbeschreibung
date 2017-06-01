@@ -15,9 +15,6 @@
             <constructor-arg type="int" value="255" />
         </bean>
       </property>
-      <property name="resizable">
-        <value>false</value>
-      </property>
       <property name="visible">
         <value>true</value>
       </property>
@@ -48,14 +45,17 @@
      <property name="layout">
         <ref bean="layout"/>
      </property>
+     <property name="picturePanel">
+        <ref bean="picturePanel"/>
+     </property>
   </bean>
   
   <bean id="roomComboboxLeft" class="ui.RoomCombobox"  init-method="init">
       <property name="visible">
         <value>true</value>
       </property>
-      <property name="floor">
-        <ref bean="floor"/>
+      <property name="building">
+        <ref bean="building"/>
       </property>
   </bean>
   
@@ -63,8 +63,8 @@
       <property name="visible">
         <value>true</value>
       </property>
-      <property name="floor">
-        <ref bean="floor"/>
+      <property name="building">
+        <ref bean="building"/>
       </property>
   </bean>
   
@@ -87,7 +87,20 @@
    <bean id="layout" class="java.awt.BorderLayout">
   </bean>
   
-  <bean id="floor" class="building.Floor">
+  <bean id="building" class="building.Building">
+  </bean>
+  
+  <bean id="picturePanel" class="ui.PicturePanel" init-method="init">
+     <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="building">
+        <ref bean="building"/>
+     </property>
   </bean>
   
 </beans>
