@@ -84,10 +84,28 @@
     <constructor-arg type="java.lang.String" value="Start route"/>
   </bean>
   
-   <bean id="layout" class="java.awt.BorderLayout">
+  <bean id="layout" class="java.awt.BorderLayout">
+  </bean>
+  
+  <bean id="groundFloor" class="building.GroundFloor">
+  </bean>
+  
+  <bean id="secondFloor" class="building.SecondFloor">
+  </bean>
+  
+  <bean id="firstFloor" class="building.FirstFloor">
   </bean>
   
   <bean id="building" class="building.Building">
+      <property name="groundFloor">
+        <ref bean="groundFloor"/>
+      </property>
+      <property name="secondFloor">
+        <ref bean="secondFloor"/>
+      </property>
+      <property name="firstFloor">
+        <ref bean="firstFloor"/>
+      </property>
   </bean>
   
   <bean id="picturePanel" class="ui.PicturePanel" init-method="init">
@@ -98,8 +116,59 @@
             <constructor-arg type="int" value="255" />
         </bean>
      </property>
-     <property name="building">
-        <ref bean="building"/>
+     <property name="mergedPanel">
+        <ref bean="mergedPanel"/>
+     </property>
+  </bean>
+  
+  <bean id="scrollPanel1" class="ui.ScrollabelPanel" init-method="init">
+     <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="floor">
+        <ref bean="groundFloor"/>
+     </property>
+  </bean>
+  
+  <bean id="scrollPanel2" class="ui.ScrollabelPanel" init-method="init">
+     <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="floor">
+        <ref bean="firstFloor"/>
+     </property>
+  </bean>
+  
+  <bean id="scrollPanel3" class="ui.ScrollabelPanel" init-method="init">
+     <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
+     <property name="floor">
+        <ref bean="secondFloor"/>
+     </property>
+  </bean>
+  
+  <bean id="mergedPanel" class="ui.MergedPanel" init-method="init">
+     <property name="scrollPanel1">
+        <ref bean="scrollPanel1"/>
+     </property>
+     <property name="scrollPanel2">
+        <ref bean="scrollPanel2"/>
+     </property>
+     <property name="scrollPanel3">
+        <ref bean="scrollPanel3"/>
      </property>
   </bean>
   
