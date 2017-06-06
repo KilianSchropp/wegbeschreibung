@@ -1,7 +1,5 @@
 package ui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
 
 public class MergedPanel extends JPanel
@@ -14,9 +12,9 @@ public class MergedPanel extends JPanel
     
     public void init()
     {
-        add(scrollPanel1, BorderLayout.NORTH);
-        add(scrollPanel2, BorderLayout.CENTER);
-        add(scrollPanel3, BorderLayout.SOUTH);
+        add(scrollPanel1);
+        add(scrollPanel2);
+        add(scrollPanel3);
     }
     
     public void setScrollPanel1(JPanel scrollPanel1){this.scrollPanel1 = scrollPanel1;}

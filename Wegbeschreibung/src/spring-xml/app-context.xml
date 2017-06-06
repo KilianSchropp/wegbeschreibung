@@ -87,13 +87,25 @@
   <bean id="layout" class="java.awt.BorderLayout">
   </bean>
   
-  <bean id="groundFloor" class="building.GroundFloor">
+  <bean id="groundFloor" class="building.GroundFloor" init-method="init">
+      <property name="sql">
+        <ref bean="sql"/>
+      </property>
   </bean>
   
-  <bean id="secondFloor" class="building.SecondFloor">
+  <bean id="secondFloor" class="building.SecondFloor" init-method="init">
+      <property name="sql">
+        <ref bean="sql"/>
+      </property>
   </bean>
   
-  <bean id="firstFloor" class="building.FirstFloor">
+  <bean id="sql" class="database.MockSQLiteDatabase">
+  </bean>
+  
+  <bean id="firstFloor" class="building.FirstFloor" init-method="init">
+      <property name="sql">
+        <ref bean="sql"/>
+      </property>
   </bean>
   
   <bean id="building" class="building.Building">
@@ -161,6 +173,13 @@
   </bean>
   
   <bean id="mergedPanel" class="ui.MergedPanel" init-method="init">
+     <property name="background">
+        <bean class="java.awt.Color" >
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+            <constructor-arg type="int" value="255" />
+        </bean>
+     </property>
      <property name="scrollPanel1">
         <ref bean="scrollPanel1"/>
      </property>
