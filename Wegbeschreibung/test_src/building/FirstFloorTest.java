@@ -37,12 +37,12 @@ public class FirstFloorTest
         
         Room roomRome = rooms.get(0);
         assertFalse(roomRome.getName().isEmpty());
-        assertFalse(roomRome.getNeighbours().isEmpty());
-        assertEquals(roomRome.getNeighbours().size(), 3);
+        assertFalse(roomRome.getNeighboursAsString().isEmpty());
+        assertEquals(roomRome.getNeighboursAsString().size(), 2);
         
         Room roomSanFrancisco = rooms.get(2);
         assertFalse(roomSanFrancisco.getName().isEmpty());
-        assertFalse(roomSanFrancisco.getNeighbours().isEmpty());
-        assertEquals(roomSanFrancisco.getNeighbours().size(), 2);
+        assertFalse(roomSanFrancisco.getNeighboursAsString().isEmpty());
+        assertEquals(roomSanFrancisco.getNeighboursAsString().size(), 2);
     }
 }

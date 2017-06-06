@@ -13,7 +13,7 @@ public class SQLiteDatabase implements Database
     }
 
     @Override
-    public List<Integer> getCoordinatesOfRoom(String roomName)
+    public List<Double> getCoordinatesOfRoom(String roomName)
     {
         // TODO Auto-generated method stub
         return null;

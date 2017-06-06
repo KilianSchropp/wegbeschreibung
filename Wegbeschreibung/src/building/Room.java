@@ -9,12 +9,13 @@ import org.apache.commons.logging.LogFactory;
 public class Room
 {
     static final Log LOG = LogFactory.getLog(Room.class);
-    public int x,y;
+    public double x,y;
     protected List<Room> rooms = new ArrayList<>();
+
     private String name;
     private List<String> neighbours;
 
-    public Room(String name, List<String> neighbours, List<Integer> points)
+    public Room(String name, List<String> neighbours, List<Double> points)
     {
         this.name = name;
         this.neighbours = neighbours;
@@ -22,18 +23,24 @@ public class Room
         this.y = points.get(1);
     }
     
-    public List<String> getNeighbours()
+    public List<String> getNeighboursAsString(){return neighbours;}
+    
+    public String getName(){return name;}
+
+    public void addToNeighbours(Room room){this.rooms.add(room);}
+    
+    public List<Room> getNeighboursAsRoomObject()
     {
-        return neighbours;
+        return rooms;
     }
     
-    public String getName()
+    public double calculateDistanceToNeighbour(Room room)
     {
-        return name;
+        return Math.hypot(x - y,room.getX() - room.getY());
     }
+    
+    private double getY(){return y;}
 
-    public void addToNeighbours(Room room)
-    {
-        this.rooms.add(room);
-    }
+    private double getX(){return x;}
+
 }

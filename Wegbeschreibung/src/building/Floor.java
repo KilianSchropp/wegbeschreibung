@@ -51,14 +51,14 @@ public abstract class Floor
         for(String roomName : rooms)
         {
             List<String> neighbours = sql.getNeighboursOfRoom(roomName);
-            List<Integer> points = sql.getCoordinatesOfRoom(roomName);
+            List<Double> points = sql.getCoordinatesOfRoom(roomName);
             Room roomObj = new Room(roomName, neighbours, points);
             roomsObj.add(roomObj);
         }
         
         for(Room room : roomsObj)
         {
-            List<String> neigbours = room.getNeighbours();
+            List<String> neigbours = room.getNeighboursAsString();
             for(String neigbour : neigbours)
             {
                 for(Room room2: roomsObj)
@@ -72,7 +72,7 @@ public abstract class Floor
                     }
                 }
             }
-            LOG.trace("Every room knows its neighbour now as an Object and not as String.");
+            LOG.trace("Every room knows its neighbour now as an Object and not only as String.");
         }
     }
     
