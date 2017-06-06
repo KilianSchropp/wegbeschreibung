@@ -5,22 +5,16 @@ import java.util.List;
 
 public class Building
 {
+    
     private Floor firstFloor;
     private Floor secondFloor;
     private Floor groundFloor;
     
-    public Building()
-    {
-        firstFloor = new FirstFloor();
-        secondFloor = new SecondFloor();
-        groundFloor = new GroundFloor();
-    }
-    
-    public Floor getFirstFloor(){return firstFloor;}
-    
-    public Floor getSecondFloor(){return secondFloor;}
-    
-    public Floor getGroundFloor(){return groundFloor;}
+    public void setFirstFloor(Floor firstFloor){this.firstFloor = firstFloor;}
+
+    public void setSecondFloor(Floor secondFloor){this.secondFloor = secondFloor;}
+
+    public void setGroundFloor(Floor groundFloor){this.groundFloor = groundFloor;}
     
     public List<String> getAllRooms()
     {
