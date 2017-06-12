@@ -2,12 +2,13 @@ package calculator;
 
 import static org.junit.Assert.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 
 import building.FirstFloor;
-import building.Room;
+import building.GraphPoint;
 import database.MockSQLiteDatabase;
 
 public class CalculateRouteTest
@@ -22,14 +23,23 @@ public class CalculateRouteTest
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();
-        floor.createLinkedRoomObjectsList();
-        List<Room> rooms = floor.getRoomsObj();
-        assertFalse(rooms.isEmpty());
+        floor.createGraphPointList();
+        floor.createLinkedGraphPointObjectsList();
+        List<GraphPoint> points = floor.getGraphPoints();
+        assertFalse(points.isEmpty());
         
-        Room roomAmsterdam = rooms.get(3);
-        Room roomSanFrancisco = rooms.get(2);
+        GraphPoint pointA = points.get(0);
+        GraphPoint vienna = points.get(9);
         
-        calc.search(roomAmsterdam, roomSanFrancisco, 0.0);
+        calc.execute(pointA);
+        LinkedList<GraphPoint> path = calc.getPath(vienna);
+        assertFalse(path.isEmpty());
+        assertEquals("PointA", path.getFirst().getName());
+        assertEquals("PointB",path.get(1).getName());
+        assertEquals("Amsterdam", path.get(2).getName());
+        assertEquals("PointD", path.get(3).getName());
+        assertEquals("PointG", path.get(4).getName());
+        assertEquals("Vienna", path.getLast().getName());
     }
 
 }

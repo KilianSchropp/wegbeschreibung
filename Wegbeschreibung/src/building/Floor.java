@@ -21,11 +21,12 @@ public abstract class Floor
     BufferedImage image;
     Database sql;
     List<String> rooms;
-    List<Room> roomsObj = new ArrayList<>();
-    
+    List<GraphPoint> graphPoints = new ArrayList<>();
+
     public void init()
     {
         createRoomList();
+        createGraphPointList();
     }
     
     public List<String> getRoomList()
@@ -38,37 +39,34 @@ public abstract class Floor
         return rooms;
     }
     
+    public List<GraphPoint> getGraphPoints(){return graphPoints;}
+    
     public void setSql(Database sql){this.sql = sql;}
     
     public void createRoomList(){rooms = sql.getRoomsForFloor(floorName);}
     
-    public List<Room> getRoomsObj(){return roomsObj;}
+    public void createGraphPointList()
+    {
+        this.graphPoints = sql.getGraphPointsForFloor(floorName);
+    }
 
     public BufferedImage getImage(){return image;}
     
-    public void createLinkedRoomObjectsList()
-    {
-        for(String roomName : rooms)
+    public void createLinkedGraphPointObjectsList()
+    {   
+        for(GraphPoint point : graphPoints)
         {
-            List<String> neighbours = sql.getNeighboursOfRoom(roomName);
-            List<Double> points = sql.getCoordinatesOfRoom(roomName);
-            Room roomObj = new Room(roomName, neighbours, points);
-            roomsObj.add(roomObj);
-        }
-        
-        for(Room room : roomsObj)
-        {
-            List<String> neigbours = room.getNeighboursAsString();
+            List<String> neigbours = point.getNeighboursAsString();
             for(String neigbour : neigbours)
             {
-                for(Room room2: roomsObj)
+                for(GraphPoint point2: graphPoints)
                 {
-                    String name = room2.getName();
+                    String name = point2.getName();
                     if(name.equals(neigbour))
                     {
-                        room.addToNeighbours(room2);
-                        LOG.trace("The Room object " + room.getName() + " is now linked with the room"
-                                + " Object " + room2.getName() + ".");
+                        point.addToNeighbours(point2);
+                        LOG.trace("The Room object " + point.getName() + " is now linked with the room"
+                                + " Object " + point2.getName() + ".");
                     }
                 }
             }
