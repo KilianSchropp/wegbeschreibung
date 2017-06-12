@@ -7,9 +7,11 @@ public class GraphPoint
 {
     double x,y;
     private String name;
-    List<GraphPoint> graphPoints = new ArrayList<GraphPoint>();
-    List<String> neighbours = new ArrayList<>();
+    private List<GraphPoint> graphPoints = new ArrayList<GraphPoint>();
+    private List<String> neighbours = new ArrayList<>();
     private boolean hasBeenVisited;
+    private Double shortesDistance = Double.MAX_VALUE;
+
 
     public GraphPoint(double x, double y, String name)
     {
@@ -63,5 +65,15 @@ public class GraphPoint
     public void setNeighboursOfGraphPoint(List<String> neighbours)
     {
         this.neighbours = neighbours;    
+    }
+    
+    public Double getShortesDistance()
+    {
+        return shortesDistance;
+    }
+    
+    public void setShortesDistance(Double shortesDistance)
+    {
+        this.shortesDistance = shortesDistance;
     }
 }
