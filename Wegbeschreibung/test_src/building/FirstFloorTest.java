@@ -31,16 +31,17 @@ public class FirstFloorTest
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();
-        floor.createLinkedRoomObjectsList();
-        List<Room> rooms = floor.getRoomsObj();
+        floor.createLinkedGraphPointObjectsList();
+        floor.createGraphPointList();
+        List<GraphPoint> rooms = floor.getGraphPoints();
         assertFalse(rooms.isEmpty());
         
-        Room roomRome = rooms.get(0);
+        GraphPoint roomRome = rooms.get(0);
         assertFalse(roomRome.getName().isEmpty());
         assertFalse(roomRome.getNeighboursAsString().isEmpty());
         assertEquals(roomRome.getNeighboursAsString().size(), 2);
         
-        Room roomSanFrancisco = rooms.get(2);
+        GraphPoint roomSanFrancisco = rooms.get(2);
         assertFalse(roomSanFrancisco.getName().isEmpty());
         assertFalse(roomSanFrancisco.getNeighboursAsString().isEmpty());
         assertEquals(roomSanFrancisco.getNeighboursAsString().size(), 2);
