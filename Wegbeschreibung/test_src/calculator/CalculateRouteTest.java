@@ -31,7 +31,7 @@ public class CalculateRouteTest
         GraphPoint pointA = points.get(0);
         GraphPoint vienna = points.get(9);
         
-        calc.execute(pointA);
+        calc.search(pointA);
         LinkedList<GraphPoint> path = calc.getPath(vienna);
         assertFalse(path.isEmpty());
         assertEquals("PointA", path.getFirst().getName());
