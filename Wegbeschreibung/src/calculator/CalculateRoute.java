@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +11,6 @@ public class CalculateRoute
 {
     HashSet<GraphPoint> nodesTodo = new HashSet<>();
     HashSet<GraphPoint> finishedNodes = new HashSet<>();
-    HashMap<GraphPoint, GraphPoint> predecessors = new HashMap<>();
     
     public void search(GraphPoint source)
     {
@@ -58,25 +56,26 @@ public class CalculateRoute
             {
                 final Double shortestDistance = node.getShortesDistance() + distanceBetweenNodes;
                 target.setShortesDistance(shortestDistance);
-                predecessors.put(target, node);
+                target.setPredecessor(node);
                 nodesTodo.add(target);
             }
 
         }
-        
     }
-
-    public LinkedList<GraphPoint> getPath(GraphPoint target) {
+    
+    public LinkedList<GraphPoint> getShortestPath(GraphPoint target)
+    {
         LinkedList<GraphPoint> path = new LinkedList<GraphPoint>();
         GraphPoint step = target;
-        if (predecessors.get(step) == null) 
+        if(!finishedNodes.contains(step))
         {
             return null;
         }
+        
         path.add(step);
-        while (predecessors.get(step) != null) 
+        while(step.getPredecessor() != null)
         {
-            step = predecessors.get(step);
+            step = step.getPredecessor();
             path.add(step);
         }
         

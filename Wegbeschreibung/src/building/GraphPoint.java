@@ -9,8 +9,9 @@ public class GraphPoint
     private String name;
     private List<GraphPoint> graphPoints = new ArrayList<GraphPoint>();
     private List<String> neighbours = new ArrayList<>();
-    private boolean hasBeenVisited;
     private Double shortesDistance = Double.MAX_VALUE;
+    private GraphPoint predecessor = null;
+
 
 
     public GraphPoint(double x, double y, String name)
@@ -27,21 +28,21 @@ public class GraphPoint
         this.name = name;
     }
     
+    public GraphPoint getPredecessor()
+    {
+        return predecessor;
+    }
+    
+    public void setPredecessor(GraphPoint predecessor)
+    {
+        this.predecessor = predecessor;
+    }
+    
     public double getX(){return x;}
     
     public double getY(){return y;}
 
     public String getName(){return this.name;}
-    
-    public void setVisited()
-    {
-        this.hasBeenVisited = true;
-    }
-    
-    public boolean isVisited()
-    {
-        return hasBeenVisited;
-    }
     
     public Double calculateDistanceToNeighbour(GraphPoint point)
     {
