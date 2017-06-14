@@ -28,8 +28,8 @@ public class CalculateRouteTest
         List<GraphPoint> points = floor.getGraphPoints();
         assertFalse(points.isEmpty());
         
-        GraphPoint pointA = points.get(0);
-        GraphPoint vienna = points.get(9);
+        GraphPoint pointA = points.get(4);
+        GraphPoint vienna = points.get(3);
         
         calc.search(pointA);
         LinkedList<GraphPoint> path = calc.getShortestPath(vienna);

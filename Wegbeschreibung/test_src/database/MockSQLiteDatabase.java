@@ -99,30 +99,19 @@ public class MockSQLiteDatabase implements Database
     }
 
     @Override
-    public List<String> getRoomsForFloor(String floorName)
-    {
-        List<String> rooms = new ArrayList<>();
-        rooms.add("Rome");
-        rooms.add("Vienna");
-        rooms.add("San Francisco");
-        rooms.add("Amsterdam");
-        return rooms;
-    }
-
-    @Override
     public List<GraphPoint> getGraphPointsForFloor(String floorName)
     {
         List<GraphPoint> points = new ArrayList<>();
-        points.add(new GraphPoint(20, 30, "PointA"));
-        points.add(new GraphPoint(30, 200, "PointC"));
-        points.add(new GraphPoint(100, 150, "PointB"));
-        points.add(new GraphPoint(200, 180, "Amsterdam"));
-        points.add(new GraphPoint(300, 20, "Rome"));
-        points.add(new GraphPoint(500, 600, "PointD"));
-        points.add(new GraphPoint(600, 40, "PointE"));
-        points.add(new GraphPoint(800, 60, "PointF"));
-        points.add(new GraphPoint(800, 100, "PointG"));
-        points.add(new GraphPoint(800, 100, "Vienna"));
+        points.add(new GraphPoint(600.0, 40.0, "PointE"));
+        points.add(new GraphPoint(800.0, 60.0, "PointF"));
+        points.add(new GraphPoint(800.0, 100.0, "PointG"));
+        points.add(new GraphPoint(800.0, 100.0, "Vienna", true));
+        points.add(new GraphPoint(20.0, 30.0, "PointA"));
+        points.add(new GraphPoint(30.0, 200.0, "PointC"));
+        points.add(new GraphPoint(100.0, 150.0, "PointB"));
+        points.add(new GraphPoint(200.0, 180.0, "Amsterdam",true));
+        points.add(new GraphPoint(300.0, 20.0, "Rome", true));
+        points.add(new GraphPoint(500.0, 600.0, "PointD"));
         
         for(GraphPoint point : points)
         {

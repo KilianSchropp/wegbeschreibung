@@ -9,6 +9,7 @@ import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import org.apache.commons.logging.Log;
@@ -23,6 +24,8 @@ public class ScrollabelPanel extends JPanel
     private Floor floor;
     private BufferedImage image;
     private List<Line2D> lines;
+    JComboBox<String> startCombobox;
+    JComboBox<String> destinationCombobox;
 
     public void init()
     {
@@ -33,6 +36,13 @@ public class ScrollabelPanel extends JPanel
     public void setLines(List<Line2D> lines){this.lines = lines;}
     
     public void setFloor(Floor floor){this.floor = floor;}
+    
+    public void calcRoute()
+    {
+        String startRoom = startCombobox.getSelectedItem().toString();
+        String destinationRoom = destinationCombobox.getSelectedItem().toString();
+        floor.getGraphPointWithName(startRoom);
+    }
     
     protected void drawAllLines(List<Line2D> lines, Graphics2D g2)
     {

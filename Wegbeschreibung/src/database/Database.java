@@ -10,8 +10,6 @@ public abstract interface Database
 
     public List<Double> getCoordinatesOfRoom(String roomName);
 
-    public List<String> getRoomsForFloor(String floorName);
-
     public List<GraphPoint> getGraphPointsForFloor(String floorName);
 
 }

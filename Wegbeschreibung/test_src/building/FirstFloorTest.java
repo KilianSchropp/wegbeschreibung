@@ -19,7 +19,7 @@ public class FirstFloorTest
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();
-        List<String> answer = floor.getRoomList();
+        List<GraphPoint> answer = floor.getRoomList();
         assertFalse(answer.isEmpty());
         assertTrue(answer.contains("Amsterdam"));
     }

@@ -8,8 +8,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import building.Building;
+import building.GraphPoint;
 
-public class RoomCombobox extends JComboBox<String>
+public class RoomCombobox extends JComboBox<GraphPoint>
 {
     private static final long serialVersionUID = 1L;
     static final Log LOG = LogFactory.getLog(RoomCombobox.class);
@@ -24,8 +25,8 @@ public class RoomCombobox extends JComboBox<String>
     
     public void addFloor()
     {
-        List<String> rooms = building.getAllRooms();
-        for(String room : rooms)
+        List<GraphPoint> rooms = building.getAllRooms();
+        for(GraphPoint room : rooms)
         {
             addItem(room);
         }

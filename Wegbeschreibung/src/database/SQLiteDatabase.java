@@ -16,13 +16,6 @@ public class SQLiteDatabase implements Database
     }
 
     @Override
-    public List<String> getRoomsForFloor(String floorName)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public List<String> getNeighboursOfGraphPoint(String roomName)
     {
         // TODO Auto-generated method stub
