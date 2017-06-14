@@ -20,22 +20,18 @@ public abstract class Floor
     String floorName = "";
     BufferedImage image;
     Database sql;
-    List<String> rooms;
+    List<GraphPoint> rooms = new ArrayList<GraphPoint>();
     List<GraphPoint> graphPoints = new ArrayList<>();
 
     public void init()
     {
-        createRoomList();
         createGraphPointList();
+        createRoomList();
+        createLinkedGraphPointObjectsList();
     }
     
-    public List<String> getRoomList()
+    public List<GraphPoint> getRoomList()
     {
-        if(rooms==null || rooms.isEmpty())
-        {
-            rooms = new ArrayList<String>();
-            rooms.add(floorName+ ": The Database for specific floor is empty");  
-        }
         return rooms;
     }
     
@@ -43,7 +39,17 @@ public abstract class Floor
     
     public void setSql(Database sql){this.sql = sql;}
     
-    public void createRoomList(){rooms = sql.getRoomsForFloor(floorName);}
+    public void createRoomList()
+    {
+        for(GraphPoint point : graphPoints)
+        {
+            if(point.isRoom())
+            {
+                point.setFloorname(floorName);
+                rooms.add(point);
+            }
+        }
+    }
     
     public void createGraphPointList()
     {
@@ -88,5 +94,20 @@ public abstract class Floor
         {
               LOG.info("An error occured when trying to open the file." , ex);
         }
+    }
+
+    public GraphPoint getGraphPointWithName(String startRoom)
+    {
+        GraphPoint answer = null;
+        for(GraphPoint point : graphPoints)
+        {
+            if(point.getName().equals(startRoom))
+            {
+                answer = point;
+                break;
+            }
+        }
+        return answer;
+        
     }
 }
