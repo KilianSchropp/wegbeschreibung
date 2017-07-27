@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import building.FirstFloor;
+import building.Floor;
 import building.GraphPoint;
 import database.MockSQLiteDatabase;
 
@@ -17,9 +17,9 @@ public class CalculateRouteTest
     @Test
     public void testSearch()
     {
-        CalculateRoute calc = new CalculateRoute();
+        RouteCalculator calc = new RouteCalculator();
         
-        FirstFloor floor = new FirstFloor();
+        Floor floor = new Floor("OG1");
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();
@@ -31,8 +31,10 @@ public class CalculateRouteTest
         GraphPoint pointA = points.get(4);
         GraphPoint vienna = points.get(3);
         
-        calc.search(pointA);
-        LinkedList<GraphPoint> path = calc.getShortestPath(vienna);
+        calc.setSource(pointA);
+        calc.setTarget(vienna);
+        calc.search();
+        LinkedList<GraphPoint> path = calc.getShortestPath();
         assertFalse(path.isEmpty());
         assertEquals("PointA", path.getFirst().getName());
         assertEquals("PointB",path.get(1).getName());

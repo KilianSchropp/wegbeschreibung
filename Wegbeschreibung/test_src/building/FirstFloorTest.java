@@ -15,7 +15,7 @@ public class FirstFloorTest
     @Test
     public void testgetRoomList()
     {
-        FirstFloor floor = new FirstFloor();
+        Floor floor = new Floor("OG1");
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();
@@ -27,7 +27,7 @@ public class FirstFloorTest
     @Test
     public void testCreateLinkedRoomObjectsList()
     {
-        FirstFloor floor = new FirstFloor();
+        Floor floor = new Floor("EG");
         MockSQLiteDatabase sql = new MockSQLiteDatabase();
         floor.setSql(sql);
         floor.createRoomList();

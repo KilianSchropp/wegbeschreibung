@@ -11,9 +11,9 @@ public class GraphPoint
     private List<String> neighbours = new ArrayList<>();
     private Double shortesDistance = Double.MAX_VALUE;
     private GraphPoint predecessor = null;
-    private String floorname ="";
-    private boolean isRoom = false;
+    private Floor floor;
 
+    private boolean isRoom = false;
 
     public GraphPoint(Double x, Double y, String name)
     {
@@ -39,9 +39,11 @@ public class GraphPoint
         this.isRoom = isRoom;
     }
     
+    public Floor getFloor(){return floor;}
+    
     public boolean isRoom(){return this.isRoom;}
     
-    public void setFloorname(String floorname){this.floorname = floorname;}
+    public void setFloor(Floor floor){this.floor = floor;}
     
     public GraphPoint getPredecessor(){return predecessor;}
     
@@ -68,13 +70,14 @@ public class GraphPoint
     public Double calculateDistanceToNeighbour(GraphPoint point)
     {
         Double localDistance;
-        localDistance =  Math.hypot(x - y,point.getX() - point.getY());
+        localDistance = Math.sqrt((point.getX() - x)*(point.getX()-x)+(point.getY()-y)*(point.getY()-y));
+        //localDistance =  Math.hypot(x - y,point.getX() - point.getY());
         return localDistance;
     }
     
     @Override
     public String toString()
     {
-        return floorname + ":" + name;
+        return floor.getFloorName() + ":" + name;
     }
 }
