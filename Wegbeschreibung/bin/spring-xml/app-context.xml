@@ -82,33 +82,51 @@
   
   <bean id="startRouteButton" class="ui.StartRouteButton">
     <constructor-arg type="java.lang.String" value="Start route"/>
+      <property name="routeCalculator">
+        <ref bean="routeCalculator"/>
+      </property>
+      <property name="roomComboboxRight">
+        <ref bean="roomComboboxRight"/>
+      </property>
+      <property name="roomComboboxLeft">
+        <ref bean="roomComboboxLeft"/>
+      </property>
+      <property name="building">
+        <ref bean="building"/>
+      </property>
   </bean>
   
   <bean id="layout" class="java.awt.BorderLayout">
   </bean>
   
-  <bean id="groundFloor" class="building.GroundFloor" init-method="init">
+  <bean id="groundFloor" class="building.Floor" init-method="init">
+  <constructor-arg type="java.lang.String" value="EG"/>
+  <constructor-arg type="boolean" value="true"/>
       <property name="sql">
         <ref bean="sql"/>
       </property>
   </bean>
   
-  <bean id="secondFloor" class="building.SecondFloor" init-method="init">
+  <bean id="secondFloor" class="building.Floor" init-method="init">
+  <constructor-arg type="java.lang.String" value="OG2"/>
+  <constructor-arg type="boolean" value="false"/>
       <property name="sql">
         <ref bean="sql"/>
       </property>
   </bean>
   
-  <bean id="sql" class="database.MockSQLiteDatabase">
+  <bean id="sql" class="database.SQLiteDatabase" init-method="init">
   </bean>
   
-  <bean id="firstFloor" class="building.FirstFloor" init-method="init">
+  <bean id="firstFloor" class="building.Floor" init-method="init">
+  <constructor-arg type="java.lang.String" value="OG1"/>
+  <constructor-arg type="boolean" value="false"/>
       <property name="sql">
         <ref bean="sql"/>
       </property>
   </bean>
   
-  <bean id="building" class="building.Building">
+  <bean id="building" class="building.Building" init-method="init">
       <property name="groundFloor">
         <ref bean="groundFloor"/>
       </property>
@@ -189,6 +207,9 @@
      <property name="scrollPanel3">
         <ref bean="scrollPanel3"/>
      </property>
+  </bean>
+  
+  <bean id="routeCalculator" class="calculator.RouteCalculator">
   </bean>
   
 </beans>

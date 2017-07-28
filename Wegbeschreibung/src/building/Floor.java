@@ -1,5 +1,6 @@
 package building;
 
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import database.Database;
 
-public abstract class Floor
+public class Floor
 {
     static final Log LOG = LogFactory.getLog(Floor.class);
     
@@ -22,6 +23,17 @@ public abstract class Floor
     Database sql;
     List<GraphPoint> rooms = new ArrayList<GraphPoint>();
     List<GraphPoint> graphPoints = new ArrayList<>();
+    List<GraphPoint> stairwayPoints;
+    boolean isSelectedToDraw;
+
+    private List<Line2D> lines;
+
+    public Floor(String floorName, boolean isSelectedToDraw)
+    {
+        this.isSelectedToDraw = isSelectedToDraw;
+        this.floorName = floorName;
+        readImage();
+    }
 
     public void init()
     {
@@ -30,34 +42,23 @@ public abstract class Floor
         createLinkedGraphPointObjectsList();
     }
     
-    public List<GraphPoint> getRoomList()
+    public String getFloorName()
     {
-        return rooms;
+        return floorName;
     }
-    
-    public List<GraphPoint> getGraphPoints(){return graphPoints;}
-    
-    public void setSql(Database sql){this.sql = sql;}
     
     public void createRoomList()
     {
         for(GraphPoint point : graphPoints)
         {
+            point.setFloor(this);
             if(point.isRoom())
             {
-                point.setFloorname(floorName);
                 rooms.add(point);
             }
         }
     }
-    
-    public void createGraphPointList()
-    {
-        this.graphPoints = sql.getGraphPointsForFloor(floorName);
-    }
-
-    public BufferedImage getImage(){return image;}
-    
+      
     public void createLinkedGraphPointObjectsList()
     {   
         for(GraphPoint point : graphPoints)
@@ -71,13 +72,13 @@ public abstract class Floor
                     if(name.equals(neigbour))
                     {
                         point.addToNeighbours(point2);
-                        LOG.trace("The Room object " + point.getName() + " is now linked with the room"
+                        LOG.info("The Room object " + point.getName() + " is now linked with the room"
                                 + " Object " + point2.getName() + ".");
                     }
                 }
             }
-            LOG.trace("Every room knows its neighbour now as an Object and not only as String.");
         }
+        LOG.trace("Every room knows its neighbour now as an Object and not only as String.");
     }
     
     public void readImage()
@@ -96,18 +97,21 @@ public abstract class Floor
         }
     }
 
-    public GraphPoint getGraphPointWithName(String startRoom)
-    {
-        GraphPoint answer = null;
-        for(GraphPoint point : graphPoints)
-        {
-            if(point.getName().equals(startRoom))
-            {
-                answer = point;
-                break;
-            }
-        }
-        return answer;
-        
-    }
+    public void setLinesToDraw(List<Line2D> lines){this.lines = lines;}
+    
+    public void createGraphPointList(){this.graphPoints = sql.getGraphPointsForFloor(this);}
+    
+    public BufferedImage getImage(){return image;}
+    
+    public List<GraphPoint> getRoomList(){return rooms;}
+    
+    public List<GraphPoint> getGraphPoints(){return graphPoints;}
+    
+    public void setSql(Database sql){this.sql = sql;}
+    
+    public List<Line2D> getLinesToDraw(){return this.lines;}
+    
+    public void setSelectedToDraw(boolean isSelectedToDraw){this.isSelectedToDraw = isSelectedToDraw;}
+    
+    public boolean isSelectedToDraw(){return isSelectedToDraw;}
 }
